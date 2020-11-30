@@ -4,7 +4,7 @@
 
 使用含有关键字exists查找未分配具体部门的员工的所有信息。
 
-```
+```sql
 CREATE TABLE `employees` (
 `emp_no` int(11) NOT NULL,
 `birth_date` date NOT NULL,
