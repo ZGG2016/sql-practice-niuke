@@ -25,22 +25,35 @@ PRIMARY KEY (`emp_no`));
 
 	10008   1958-02-19  Saniya       Kalloufi     M     1994-09-15
 
-
 ## 2、题解
+
+【最晚入职的那个(那几个)员工的**所有**信息】
 
 当所有的数据里员工入职的日期都不是同一天：
 
 ```sql
+-- 1.排序后取limit
 select emp_no,birth_date,first_name,last_name,gender,hire_date from employees 
 	order by hire_date desc limit 1;
+-- 2.窗口函数
 ```
 
 当所有的数据里员工入职的日期存在是同一天：
 
 ```sql
+-- 1.max+子查询
 select emp_no,birth_date,first_name,last_name,gender,hire_date from employees 
 	where hire_date = (select max(hire_date) from employees);
+-- 2.窗口函数
 ```
+
+对max:
+
+	如果只取一个hire_date值，可以直接`select max(hire_date) from employees)`。
+	
+	如果取所有信息，将max放子查询中。
+
+**取最值，可以排序后取limit，也可以直接max\min，也可以用窗口函数，要注意是取一个值，还是取所有信息。**
 
 ## 3、涉及内容
 
