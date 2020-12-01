@@ -134,3 +134,4 @@ mysql> select distinct aid,site_id from access_log;
 +-----+---------+
 7 rows in set (0.00 sec)
 ```
+

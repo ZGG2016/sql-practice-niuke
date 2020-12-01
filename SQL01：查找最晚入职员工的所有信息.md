@@ -75,3 +75,4 @@ select emp_no,birth_date,first_name,last_name,gender,hire_date from employees
 用于根据指定的列对结果集进行排序。默认升序asc。降序是desc。
 
 (3)[子句查询](https://blog.csdn.net/Noblelxl/article/details/90646648)
+
