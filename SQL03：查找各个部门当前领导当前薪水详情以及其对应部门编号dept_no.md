@@ -23,10 +23,12 @@ PRIMARY KEY (`emp_no`,`dept_no`));
 
 
 ```sql
-select s.emp_no,s.salary,s.from_date,s.to_date,d.dept_no 
-from dept_manager d join salaries s on d.emp_no=s.emp_no
-where d.to_date='9999-01-01' and s.to_date='9999-01-01'
-order by s.emp_no;
+-- 使用了left join
+select dm.emp_no,s.salary,s.from_date,s.to_date,dm.dept_no
+from (select * from dept_manager where to_date='9999-01-01') dm
+left join (select * from salaries where to_date='9999-01-01') s
+on dm.emp_no=s.emp_no
+order by dm.emp_no asc;
 -- 对此题要注意两个时间字段。
 -- salaries的from_date是当前薪水的开始时间，dept_manager的from_date是作为部门经理的开始时间。
 ```
