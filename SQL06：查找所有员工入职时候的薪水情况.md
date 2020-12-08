@@ -42,7 +42,7 @@ where e.emp_no=s.emp_no and e.hire_date=s.from_date
 order by emp_no desc;
 ```
 
-方法3：子查询
+方法3：子查询（注意和方法1的联系）
 
 ```sql
 select s.emp_no,s.salary 
@@ -51,7 +51,7 @@ where from_date = (select hire_date from employees e where e.emp_no = s.emp_no)
 order by s.emp_no desc;
 ```
 
-方法4:获取 salaries 中 from_data 中最小的对应的 salary 和 emp_no ，因为 salaries 可能涨薪，所以这张表一个员工可能有多条记录。
+方法4:根据 from_data 分组，获取 salaries 中 from_data 中最小的对应的 salary 和 emp_no。
 
 ```sql
 SELECT emp_no,salary FROM salaries 
@@ -62,6 +62,6 @@ ORDER BY emp_no DESC;
 
 ## 3、涉及内容
 
-select * from a, b where a.id = 1 and a.id = b.id
+	select * from a, b where a.id = 1 and a.id = b.id
 
 隐式内连接，只有匹配的行
