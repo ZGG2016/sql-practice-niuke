@@ -22,7 +22,7 @@ select emp_no,count(distinct salary) t from salaries group by emp_no having t>15
 
 ------------------------------------------------------------------
 
-变动理解成本月的工资和下月的工资不同：
+按照严格意义上的变动，本月的工资和下月的工资不同：
 
 ```sql
 select emp_no,count(*) t 
