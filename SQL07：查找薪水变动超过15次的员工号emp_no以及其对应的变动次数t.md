@@ -13,25 +13,38 @@
 
 ## 2、题解
 
-如果按照出现一条记录就算一次变动的话：
+按照组内出现一条不同记录就算一次变动的话：
 
 ```sql
-#注意distinct salary
+-- 注意distinct salary
 select emp_no,count(distinct salary) t from salaries group by emp_no having t>15;
 ```
 
 ------------------------------------------------------------------
 
-如果变动改成涨幅，需另外考虑：
-
-按照严格意义上的涨幅，本条记录比上条记录大，才算：
+变动理解成本月的工资和下月的工资不同：
 
 ```sql
 select emp_no,count(*) t 
 	from salaries s1 
 	inner join salaries s2 on s1.emp_no=s2.emp_no and s1.to_date=s2.from_date
-	where s1.salary < s2.salary
+	where s1.salary ！= s2.salary
 	group by emp_no
+	having t>15; 
+```
+
+------------------------------------------------------------------
+
+如果变动理解成涨幅：
+
+按照严格意义上的涨幅，本条记录比上条记录大，才算：
+
+```sql
+select s1.emp_no,count(*) t 
+	from salaries s1 
+	inner join salaries s2 on s1.emp_no=s2.emp_no and s1.to_date=s2.from_date
+	where s1.salary < s2.salary
+	group by s1.emp_no
 	having t>15; 
 ```
 
