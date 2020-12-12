@@ -24,14 +24,9 @@ PRIMARY KEY (`emp_no`,`from_date`));
 
 
 ```sql
+-- 因为同一个人可能有多条薪水情况记录，所以这里去重了
 select distinct d.dept_no, d.emp_no,s.salary
 from dept_manager d
 join salaries s on d.emp_no=s.emp_no
 where d.to_date='9999-01-01' and s.to_date='9999-01-01';
-
-select d.dept_no,d.emp_no,s.salary
-from dept_manager d,salaries s
-where d.emp_no=s.emp_no
-and d.to_date='9999-01-01'
-and s.to_date='9999-01-01'
 ```
