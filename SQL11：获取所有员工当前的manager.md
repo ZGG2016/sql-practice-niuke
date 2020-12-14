@@ -27,5 +27,6 @@ PRIMARY KEY (`emp_no`,`dept_no`));
 select e.emp_no,m.emp_no 
 from dept_emp e join dept_manager m on e.dept_no=m.dept_no
 where e.to_date='9999-01-01' and m.to_date='9999-01-01' and e.emp_no!=m.emp_no;
--- 部门的员工可能也有一些离职的，所以e.to_date='9999-01-01'
+-- 如果部门离职后的员工的信息还在dept_emp表中，需要添加e.to_date='9999-01-01'
+-- 如果已从表中删除了，就不需要了。
 ```
