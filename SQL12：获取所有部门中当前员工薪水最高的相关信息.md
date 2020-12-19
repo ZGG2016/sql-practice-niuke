@@ -23,10 +23,13 @@ PRIMARY KEY (`emp_no`,`from_date`));
 
 ## 2、题解
 
-注意点：一个部门有两个人的薪水都是最高的。
+注意点：
 
-	利用窗口函数dense_rank()的性质：返回当前行在其分区中的排名，是连续的值。同级的行具有相同的排名。
+    一个部门可能有两个人的薪水都是最高的。
 
+方法1：利用窗口函数dense_rank()
+
+    dense_rank()：返回当前行在其分区中的排名，是连续的值。同级的行具有相同的排名。
 
 ```sql
 select dept_no,emp_no,salary 
@@ -40,17 +43,48 @@ from (
 where dr=1;
 ```
 
+方法2：子查询
+
 ```sql
--- 也通过了？？？
+SELECT d1.dept_no, d1.emp_no, s1.salary
+FROM dept_emp as d1 
+INNER JOIN salaries as s1 ON d1.emp_no=s1.emp_no
+AND d1.to_date='9999-01-01'
+AND s1.to_date='9999-01-01'
+WHERE s1.salary in (SELECT MAX(s2.salary)  -- 先取出一个部门下的最大值
+    FROM dept_emp as d2
+    INNER JOIN salaries as s2
+    ON d2.emp_no=s2.emp_no
+    AND d2.to_date='9999-01-01'
+    AND s2.to_date='9999-01-01'
+    AND d2.dept_no = d1.dept_no
+    )
+ORDER BY d1.dept_no;
+```
+
+```sql
+-- 在mysql中不能通过，因为select中的非聚合字段都要在group by中。
 select d.dept_no,d.emp_no,max(s.salary) 
 from dept_emp d join salaries s 
 on d.emp_no=s.emp_no
 where d.to_date = '9999-01-01' and s.to_date='9999-01-01'
 group by d.dept_no
 order by d.dept_no;
+
+-- 如果这题不需要给出emp_no(即只求所有部门中当前员工薪水最高值)，则用INNER JOIN和GROUP BY和MAX即可解决：
+SELECT d.dept_no, MAX(s.salary)
+FROM dept_emp as d
+INNER JOIN salaries as s
+ON d.emp_no=s.emp_no
+AND d.to_date='9999-01-01'
+AND s.to_date='9999-01-01'
+GROUP BY d.dept_no;
 ```
 
-注意查看`题解`中的讨论。
+**求最值的时候考虑是不是可能存在同时有多个值的情况：**
+
+    1.利用窗口函数
+    2.子查询，先取出一个部门下的最大值，再匹配。
 
 ## 3、涉及内容
 

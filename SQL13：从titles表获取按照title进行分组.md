@@ -94,3 +94,30 @@ mysql> SELECT DEPT,AVG(SAL) A FROM WINDOWFUNC_TEST GROUP BY DEPT HAVING A>1000;
 mysql> SELECT DEPT,AVG(SAL) A FROM WINDOWFUNC_TEST WHERE A>1000 GROUP BY DEPT; 
 ERROR 1054 (42S22): Unknown column 'A' in 'where clause'
 ```
+
+不要将应该用在 WHERE 子句中的项，使用 HAVING。例如，不要这么写：
+
+```sql
+SELECT col_name FROM tbl_name HAVING col_name > 0;
+```
+
+应该这么写：
+
+```sql
+SELECT col_name FROM tbl_name WHERE col_name > 0;
+```
+
+(3) 
+
+一个 `select_expr` 可以使用 `AS alias_name` 给出一个别名。这个别名用作这个表达式的列名，可以用在 `GROUP BY`、`ORDER BY`、`HAVING` 子句中，不允许在 `WHERE` 子句中引用列别名。
+
+允许 HAVING 去引用 SELECT 中列出的列和外层子查询中的列。
+
+例如：
+
+```sql
+SELECT CONCAT(last_name,', ',first_name) AS full_name
+  FROM mytable ORDER BY full_name;
+```
+
+[select的更多描述](https://github.com/ZGG2016/mysql-reference-manual/blob/master/13%20SQL%20Statements/13.02%20%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5Data%20Manipulation%20Statements/13.02.10%20SELECT%20Statement/13.02.10%20SELECT%20Statement.md)
