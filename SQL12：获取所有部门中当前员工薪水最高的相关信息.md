@@ -63,7 +63,11 @@ ORDER BY d1.dept_no;
 ```
 
 ```sql
--- 在mysql中不能通过，因为select中的非聚合字段都要在group by中。
+-- SQL-92 及更早版本不允许如下这种查询
+-- SQL:1999 及更新版本允许这种查询，条件是：
+-- 1.非聚合列功能上依赖 GROUP BY 列，如 name 和 custid(主键)的关系
+-- 2.如果启用了 `ONLY_FULL_GROUP_BY` 模式，这列被限制成一个单个值，那么 MySQL 允许这个非聚合列不出现在 GROUP BY 子句
+-- 3.如果禁用了 `ONLY_FULL_GROUP_BY`，即使这些列在功能上并不依赖 GROUP BY 列，也可以
 select d.dept_no,d.emp_no,max(s.salary) 
 from dept_emp d join salaries s 
 on d.emp_no=s.emp_no
@@ -118,3 +122,7 @@ mysql> SELECT
 |    5 |          9 |    9 |          5 |
 +------+------------+------+------------+
 ```
+
+(2)对 group by 的处理
+
+[更多描述](https://github.com/ZGG2016/mysql-reference-manual/blob/master/12%20Functions%20and%20Operators/12.20%20%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0-Aggregate%20Functions/12.20.03%20%E5%AF%B9GROUP%20BY%E7%9A%84%E5%A4%84%E7%90%86-MySQL%20Handling%20of%20GROUP%20BY.md)
