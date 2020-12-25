@@ -18,7 +18,7 @@ PRIMARY KEY (`emp_no`,`from_date`));
 薪水第二多的员工可能不止一个。
 
 ```sql
--- 根据salary分组
+-- 根据salary分组，或去重，再排序
 select emp_no,salary
 from salaries
 where to_date='9999-01-01'
