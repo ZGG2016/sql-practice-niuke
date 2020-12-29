@@ -35,6 +35,15 @@ PRIMARY KEY (`emp_no`));
 SELECT em.last_name, em.first_name, dp.dept_name
 FROM (employees AS em LEFT JOIN dept_emp AS de ON em.emp_no = de.emp_no)
 LEFT JOIN departments AS dp ON de.dept_no = dp.dept_no;
+
+-- ---------------------------------
+-- 先将部门id和名称join，再和 employees 表 left join
+select a.last_name,a.first_name,d.dept_name
+from employees a 
+left join (
+    select b.emp_no,c.dept_name from dept_emp b
+    join departments c on b.dept_no=c.dept_no) d
+on a.emp_no=d.emp_no;
 ```
 
 ## 3、涉及内容

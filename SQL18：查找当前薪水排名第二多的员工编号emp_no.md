@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-查找当前薪水(to_date='9999-01-01')排名第二多的员工编号emp_no、薪水salary、last_name以及first_name，你可以不使用order by完成吗
+查找当前薪水(to_date='9999-01-01')排名第二多的员工编号emp_no、薪水salary、last_name以及first_name，你可以**不使用order by**完成吗
 
 ```sql
 CREATE TABLE `employees` (
@@ -26,7 +26,7 @@ PRIMARY KEY (`emp_no`,`from_date`));
 
 
 ```sql
---先求salaries表里的最大值，再求出第二大的值，再将join后的表过滤这个条件。
+--先求salaries表里的最大值，排除这个最大值后，再求出最大的值，再将join后的表过滤这个条件。
 select e.emp_no,s.salary,e.last_name,e.first_name
 from employees e 
 join salaries s on e.emp_no=s.emp_no
