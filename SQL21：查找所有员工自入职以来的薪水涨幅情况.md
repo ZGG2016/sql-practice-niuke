@@ -1,6 +1,6 @@
 # [SQL21：查找所有员工自入职以来的薪水涨幅情况](https://www.nowcoder.com/practice/fc7344ece7294b9e98401826b94c6ea5?tpId=82&&tqId=29773&rp=1&ru=/ta/sql&qru=/ta/sql/question-ranking)
 
-## 1、题目
+## 【1】、题目
 
 查找所有员工自入职以来的薪水涨幅情况，给出员工编号emp_no以及其对应的薪水涨幅growth，并按照growth进行升序
 
@@ -32,6 +32,9 @@ PRIMARY KEY (`emp_no`,`from_date`));
 用当前薪水减去入职时的薪水。
 
 ```sql
+-- 先用employees表join salaries表，得到入职时薪水，
+-- 再从salaries表里过滤出当前薪水，再和上步骤join
+-- 这样，一个员工的当前薪水和入职时薪水在一行，直接做减法即可。
 select s1.emp_no,(s1.salary-s2.salary) growth 
 from 
 (select emp_no,salary from salaries where to_date='9999-01-01') s1 

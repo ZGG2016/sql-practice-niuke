@@ -2,6 +2,7 @@
 
 ## 1、题目
 
+
 统计各个部门的工资记录数，给出部门编码dept_no、部门名称dept_name以及部门在salaries表里面有多少条记录sum
 
 ```sql
