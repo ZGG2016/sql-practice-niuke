@@ -39,6 +39,7 @@ PRIMARY KEY (`emp_no`,`from_date`));
 
 
 ```sql
+-- 员工和经理表分别和薪水表join后，新表的每一行都是这个员工及其经理的信息，直接比较即可。
 select e.emp_no,m.emp_no manager_no,e.salary emp_salary,m.salary manager_salary
 from (select de.emp_no,de.dept_no,s.salary from dept_emp de 
       join salaries s on de.emp_no=s.emp_no 
