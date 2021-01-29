@@ -80,6 +80,8 @@ mysql> select concat_ws(',','11','22',NULL);
 
 	group_concat([DISTINCT] 要连接的字段 [Order BY ASC/DESC 排序字段] [Separator '分隔符'])
 
+函数括号里的可选字段是对`要连接的字段`操作。如：[DISTINCT]是对`要连接的字段`去重。
+
 ```sql
    mysql> select * from aa;
 
