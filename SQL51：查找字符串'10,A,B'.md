@@ -13,3 +13,13 @@ select length("10,A,B")-length(replace("10,A,B",",","")) cnt;
 ```
 
 ## 3、涉及内容
+
+length()和char_length()：用来获取字符串长度。
+
+区别是：
+
+length()： 单位是字节，utf8编码下,一个汉字三个字节，一个数字或字母一个字节。gbk编码下,一个汉字两个字节，一个数字或字母一个字节。
+
+char_length()：单位为字符，不管汉字还是数字或者是字母都算是一个字符。
+
+原文地址：[https://www.cnblogs.com/biehongli/p/12389418.html](https://www.cnblogs.com/biehongli/p/12389418.html)
