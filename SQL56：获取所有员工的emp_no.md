@@ -32,12 +32,11 @@ PRIMARY KEY (`emp_no`));
 
 ## 2、题解
 
-
 ```sql
 select e.emp_no,de.dept_no,eb.btype,eb.received
 from employees e 
 left join emp_bonus eb on e.emp_no =eb.emp_no 
-join dept_emp de on e.emp_no =de.emp_no; 
+join dept_emp de on e.emp_no =de.emp_no;   -- 注意，这里的join，不是left join
 ```
 
 ## 3、涉及内容

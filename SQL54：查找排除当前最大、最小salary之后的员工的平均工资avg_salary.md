@@ -23,6 +23,8 @@ and salary not in (
     select max(salary) from salaries where to_date = '9999-01-01'
     union 
     select min(salary) from salaries where to_date = '9999-01-01');
+
+-- 如果存在多个最值情况，可以使用窗口函数 dense_rank()
 ```
 
 ## 3、涉及内容
