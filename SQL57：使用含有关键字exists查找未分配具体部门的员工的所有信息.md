@@ -26,6 +26,7 @@ PRIMARY KEY (`emp_no`,`dept_no`));
 
 
 ```sql
+-- 注意和 in 的使用区别
 select emp_no,birth_date,first_name,last_name,gender,hire_date
 from employees e
 where not exists (select emp_no from dept_emp de where e.emp_no=de.emp_no);
