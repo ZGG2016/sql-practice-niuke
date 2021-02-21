@@ -26,6 +26,7 @@ emp_no | salary | running_total
 
 
 ```sql
+-- 使用窗口函数
 select emp_no,salary,
 sum(salary) over(order by emp_no) running_total
 from salaries
@@ -39,6 +40,14 @@ select s1.emp_no,s1.salary,
 from salaries s1
 where s1.to_date = '9999-01-01'
 order by s1.emp_no;
+
+-- 使用join
+select s1.emp_no,s1.salary,
+    sum(s2.salary) running_total
+from salaries s1
+join salaries s2 on s1.emp_no>=s2.emp_no
+where s1.to_date = '9999-01-01' and s2.to_date = '9999-01-01'
+group by s1.emp_no,s1.salary
 ```
 
 ## 3、涉及内容

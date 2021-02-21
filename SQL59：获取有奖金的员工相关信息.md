@@ -42,14 +42,15 @@ CREATE TABLE `salaries` (
 ## 2、题解
 
 ```sql
-select e.emp_no,e.first_name,e.last_name,eb.btype,s.salary,
-(case eb.btype when 1 then s.salary*0.1 
- when 2 then s.salary*0.2 
- else s.salary*0.3 end) bonus
-from employees e
-join emp_bonus eb on e.emp_no=eb.emp_no
-join salaries s on e.emp_no=s.emp_no
-where s.to_date='9999-01-01';
+select eb.emp_no,
+    e.first_name,e.last_name,
+    eb.btype,s.salary,
+    case when eb.btype=1 then s.salary*0.1
+         when eb.btype=2 then s.salary*0.2
+         else s.salary*0.3 end as bonus
+from emp_bonus eb 
+join employees e on eb.emp_no=e.emp_no
+join (select * from salaries where to_date='9999-01-01') s on eb.emp_no=s.emp_no
 ```
 
 ## 3、涉及内容

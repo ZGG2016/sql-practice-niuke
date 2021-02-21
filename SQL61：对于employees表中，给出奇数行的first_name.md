@@ -20,6 +20,7 @@ PRIMARY KEY (`emp_no`));
 
 ```sql
 -- 通过，但有重复数据时，出错
+-- 使用join可以保证输出按原表顺序输出
 select
     e.first_name
 from employees e join
@@ -32,7 +33,7 @@ where ern.rn % 2 != 0;
 
 -- 解决有重复数据的问题
 select
-    distinct e.first_name
+    e.first_name
 from employees e join
 (select 
 	first_name, 
@@ -41,10 +42,10 @@ from employees e join
 on e.first_name = ern.first_name
 where ern.rn % 2 != 0;
 
--- 没通过 【没有重复数据时】  【输出顺序不同？？？】
+-- 没通过
 select first_name from (
     select first_name,
-    row_number() over(order by first_name) rn
+    dense_rank() over(order by first_name) rn
     from employees
 ) a
 where rn%2!=0;
@@ -70,7 +71,7 @@ select first_name from (
 -----------------------------------------------------
 
 ```sql
--- 有重复数据 10009
+-- 有重复数据 10001和10009
 mysql> select * from employees;
 +--------+------------+------------+-----------+--------+------------+
 | emp_no | birth_date | first_name | last_name | gender | hire_date  |
