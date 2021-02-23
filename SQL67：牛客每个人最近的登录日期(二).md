@@ -40,7 +40,8 @@ wangchao最近的登录日期也是2020-10-13，而且是使用ios登录的
 
 
 ```sql
-# sqlite
+-- sqlite
+-- 在mysql下会出错
 select u.name u_n,c.name c_n,max(l.date) d
 from login l 
 join user u on l.user_id=u.id
@@ -48,22 +49,27 @@ join client c on l.client_id=c.id
 group by u_n
 order by u_n;
 
-select u.name u_n,c.name c_n,lg.date d
-from (
-    select user_id,client_id,max(date) date
-    from login group by user_id) lg
-    join user u on lg.user_id=u.id
-    join client c on lg.client_id=c.id
-order by u_n;
+-- mysql
+select t1.u_n,t1.c_n,t1.date
+from (select l.user_id,l.client_id,l.date,
+      u.name u_n,c.name c_n
+      from login l
+          join user u on l.user_id=u.id
+          join client c on l.client_id=c.id) t1
+join (select user_id,max(date) as date
+      from login 
+      group by user_id
+      order by user_id) t2 
+on t1.user_id=t2.user_id and t1.date=t2.date
+order by t1.u_n;
 
-select user.name as u_n, client.name as c_n,
-login.date
-from login 
-join user on login.user_id=user.id
-join client on login.client_id=client.id
-where (login.user_id,login.date) in
-(select user_id,max(date) from login group by login.user_id )
-order by user.name;
+-- mysql
+select u.name as u_n, c.name as c_n,l.date
+from login l
+join user u on l.user_id=u.id
+join client c on l.client_id=c.id
+where (l.user_id,l.date) in (select user_id,max(date) from login group by user_id)
+order by u_n;
 ```
 
 ## 3、涉及内容

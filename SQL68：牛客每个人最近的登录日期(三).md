@@ -1,4 +1,4 @@
-# [SQL68：牛客每个人最近的登录日期(三)]()
+# [SQL68：牛客每个人最近的登录日期(三)](https://www.nowcoder.com/practice/16d41af206cd4066a06a3a0aa585ad3d?tpId=82&tqId=35086&rp=1&ru=%2Fta%2Fsql&qru=%2Fta%2Fsql%2Fquestion-ranking&tab=answerKey)
 
 ## 1、题目
 
@@ -41,9 +41,21 @@ mysql里查找某一天的后一天的用法是:DATE_ADD(yyyy-mm-dd,INTERVAL 1 D
 先取出用户及第一次登录的日期，通过join，得到第二次登录的日期，最后取概率。
 
 ```sql
-select round((count(b.user_id)*1.0/count(a.user_id)),3) p
-from (select user_id,min(date) d from login group by user_id) a
-left join login b on a.user_id=b.user_id and b.date=DATE_ADD(a.d,INTERVAL 1 DAY);
+-- 运行时间：39ms 占用内存：5428KB
+select round((count(b.user_id)/count(a.user_id)),3) p
+from (select user_id,min(date) d 
+      from login 
+      group by user_id) a
+left join login b 
+on a.user_id=b.user_id and b.date=DATE_ADD(a.d,interval 1 day);
+
+-- 运行时间：32ms 占用内存：5300KB
+select round(count(distinct b.user_id)/count(distinct a.user_id),3) p
+from login a 
+left join (select user_id,min(date) as date 
+      from login 
+      group by user_id) b
+on a.user_id=b.user_id and a.date=date_add(b.date,interval 1 day);
 ```
 
 ## 3、涉及内容
