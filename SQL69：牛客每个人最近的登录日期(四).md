@@ -36,7 +36,7 @@
 
 ## 2、题解
 
-用原表left join第一次登录表，再过滤。
+用原表left join取到用户第一次登录的结果，再过滤。
 
 ```sql
 select a.date,sum(case when b.user_id is null then 0 else 1 end) new

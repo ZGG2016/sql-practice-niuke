@@ -55,20 +55,17 @@ wangchao在2020-10-13通过2道，但是加上前面2020-10-12通过1道，故�
 
 
 ```sql
-select name u_n,date,
-sum(number) over(partition by user_id order by date) ps_num
-from (select a.user_id,a.date,b.number,c.name from login a
-join passing_number b on a.user_id=b.user_id and a.date=b.date
-join user c on a.user_id=c.id)d
+select name as u_n, date,
+    sum(number) over(partition by user_id order by date) ps_num
+from (
+    select a.user_id,a.date,b.number,c.name 
+    from login a
+join passing_number b 
+    on a.user_id=b.user_id and a.date=b.date
+join user c 
+    on a.user_id=c.id) t
 order by date,name;
 
--- 简洁版
-select c.name u_n,a.date,
-sum(b.number) over(partition by a.user_id order by a.date) ps_num
-from login a
-join passing_number b on a.user_id=b.user_id and a.date=b.date
-join user c on a.user_id=c.id
-order by a.date,c.name;
 ```
 
 ## 3、涉及内容

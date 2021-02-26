@@ -63,15 +63,15 @@ where date not in (select min(date) date from login group by user_id)
 order by date;
 
 
-select a.date,round(ifnull(1.0*count(l.user_id)/count(b.user_id),0),3) p
+select a.adate,round(ifnull(1.0*count(l.user_id)/count(b.user_id),0),3) p
 from 
-(select date from login group by date) a 
+    (select date as adate from login group by date) a 
 left join 
-(select user_id,min(date) d from login group by user_id) b
-on a.date=b.d
+    (select user_id,min(date) bdate from login group by user_id) b
+on a.adate=b.bdate
 left join login l 
-on b.user_id=l.user_id and l.date=date_add(a.date,interval 1 day)
-group by a.date;
+on b.user_id=l.user_id and date_add(a.adate,interval 1 day)=l.date
+group by a.adate;
 
 -- ---------------------------
 mysql> select a.date,b.user_id,b.d,l.user_id,l.date
@@ -95,3 +95,7 @@ mysql> select a.date,b.user_id,b.d,l.user_id,l.date
 ```
 
 ## 3、涉及内容
+
+IFNULL() 函数用于判断第一个表达式是否为 NULL，如果为 NULL 则返回第二个参数的值，如果不为 NULL 则返回第一个参数的值。
+
+	IFNULL(expression, alt_value)
