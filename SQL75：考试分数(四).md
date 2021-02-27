@@ -27,10 +27,11 @@
 
 ## 2、题解
 
+【取一个范围】
 
 ```sql
 select job,
-if(count(*) MOD 2=0,count(*) DIV 2,count(* ) DIV 2 +1) start,
+if(count(*) MOD 2=0,count(*) DIV 2,count(*) DIV 2 +1) start,
 if(count(*) MOD 2=0,count(*) DIV 2 +1,count(*) DIV 2 +1) end
 from grade
 group by job
@@ -57,6 +58,8 @@ group by job;
 	IF(expr1,expr2,expr3)
 
 如果expr1的值为true，则返回expr2的值，如果expr1的值为false，则返回expr3的值。
+
+【case when】
 
 (2)运算符
 

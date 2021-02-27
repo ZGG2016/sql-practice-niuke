@@ -22,13 +22,24 @@
 
 
 ```sql
+-- 使用 join
 select a.id,a.job,a.score
 from grade a
 join (select job,avg(score) avg from grade group by job) b 
 on a.job=b.job and a.score>b.avg
 order by a.id;
 
--- 使用where
+-- 使用 left join
+select a.id,a.job,a.score
+from grade a
+left join (select job,avg(score) avg
+    from grade 
+    group by job) b
+on a.job=b.job
+where a.score > b.avg
+order by a.id;
+
+-- 使用 where
 select g.id, g.job,g.score from grade g  
 where g.score>(
 	select avg(score) from grade g2 

@@ -21,7 +21,7 @@
 
 ## 2、题解
 
-注意:排名相同的，一并列出来。
+注意：排名相同的，一并列出来。
 
 ```sql
 -- 窗口函数
@@ -42,6 +42,7 @@ SELECT
 FROM
     grade g JOIN LANGUAGE l
     ON g.language_id = l.id
+-- 先取第一大的分数
 WHERE score >= (SELECT IFNULL(MAX(score),0) FROM grade g2 
                 WHERE g2.language_id = g.language_id
                AND score < (SELECT MAX(score) FROM grade g3 
