@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-将id=5以及emp_no=10001的行数据替换成id=5以及emp_no=10005,其他数据保持不变，使用replace实现，直接使用update会报错了。
+将 id=5 以及 emp_no=10001 的行数据替换成 id=5 以及 emp_no=10005，其他数据保持不变，使用 replace 实现，直接使用 update 会报错了。
 
 ```sql
 CREATE TABLE titles_test (
@@ -32,7 +32,7 @@ where id=5;
 
 ## 3、涉及内容
 
-REPLACE ( string_expression , string_pattern , string_replacement )
+	REPLACE ( string_expression , string_pattern , string_replacement )
 
 参数
 

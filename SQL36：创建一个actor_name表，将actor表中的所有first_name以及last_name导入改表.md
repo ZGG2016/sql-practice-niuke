@@ -1,16 +1,17 @@
-# [SQL36：创建一个actor_name表，将actor表中的所有first_name以及last_name导入改表](https://www.nowcoder.com/practice/881385f388cf4fe98b2ed9f8897846df?tpId=82&&tqId=29804&rp=1&ru=/ta/sql&qru=/ta/sql/question-ranking)
+# [SQL36：创建一个actor_name表，将actor表中的所有first_name以及last_name导入该表](https://www.nowcoder.com/practice/881385f388cf4fe98b2ed9f8897846df?tpId=82&&tqId=29804&rp=1&ru=/ta/sql&qru=/ta/sql/question-ranking)
 
 ## 1、题目
 
-对于如下表actor，其对应的数据为:
+对于如下表 actor，其对应的数据为:
 
 actor_id | first_name | last_name | last_update
 ---|:---|:---|:---
 1 | PENELOPE | GUINESS | 2006-02-15 12:34:33
 2 | NICK | WAHLBERG | 2006-02-15 12:34:33
 
-请你创建一个actor_name表，并且将actor表中的所有first_name以及last_name导入该表.
-actor_name表结构如下：
+请你创建一个 actor_name 表，并且将 actor 表中的所有 first_name 以及 last_name 导入该表。
+
+actor_name 表结构如下：
 
 列表 | 类型 | 是否为NULL | 含义
 ---|:---|:---|:---

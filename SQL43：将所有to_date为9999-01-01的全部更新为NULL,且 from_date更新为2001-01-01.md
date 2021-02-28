@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-将所有to_date为9999-01-01的全部更新为NULL,且 from_date更新为2001-01-01。
+将所有 to_date 为 9999-01-01 的全部更新为 NULL，且 from_date 更新为 2001-01-01。
 
 ```sql
 CREATE TABLE IF NOT EXISTS titles_test (

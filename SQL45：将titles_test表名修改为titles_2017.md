@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-将titles_test表名修改为titles_2017。
+将 titles_test 表名修改为 titles_2017。
 
 ```sql
 CREATE TABLE IF NOT EXISTS titles_test (

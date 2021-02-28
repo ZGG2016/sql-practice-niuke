@@ -2,9 +2,9 @@
 
 ## 1、题目
 
-针对如下表actor结构创建索引：
+针对如下表 actor 结构创建索引：
 
-(注:在 SQLite 中,除了重命名表和在已有的表中添加列,ALTER TABLE 命令不支持其他操作，mysql支持ALTER TABLE创建索引)
+(注:在 SQLite 中，除了重命名表和在已有的表中添加列，ALTER TABLE 命令不支持其他操作，mysql 支持 ALTER TABLE 创建索引)
 
 ```sql
 CREATE TABLE actor  (
@@ -14,7 +14,7 @@ CREATE TABLE actor  (
    last_update  datetime NOT NULL);
 ```
 
-对first_name创建唯一索引uniq_idx_firstname，对last_name创建普通索引idx_lastname
+对 first_name 创建唯一索引 uniq_idx_firstname，对 last_name 创建普通索引idx_lastname
 
 ## 2、题解
 
@@ -65,7 +65,7 @@ ALTER TABLE 创建索引
   		[UNIQUE]INDEX(height)
 	)
 
-	MySQL里Create Index 不能创建主键 Primary Key
+	MySQL 里 Create Index 不能创建主键 Primary Key
 
 删除索引的语法：
 

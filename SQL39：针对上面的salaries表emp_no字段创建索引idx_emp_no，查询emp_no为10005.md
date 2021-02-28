@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-针对salaries表emp_no字段创建索引idx_emp_no，查询emp_no为10005, 使用强制索引。
+针对 salaries 表 emp_no 字段创建索引 idx_emp_no，查询 emp_no 为 10005，使用强制索引。
 
 ```sql
 CREATE TABLE `salaries` (
@@ -25,4 +25,4 @@ select * from salaries force index(idx_emp_no) where emp_no=10005;
 
 强制索引：
 
-	SELECT * FROM <表名>  FORCE INDEX (<索引名>)
+	SELECT * FROM <表名> FORCE INDEX (<索引名>)

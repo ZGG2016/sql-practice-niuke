@@ -13,7 +13,7 @@ CREATE TABLE actor (
    last_update  DATETIME NOT NULL)
 ```
 
-请你对于表actor批量插入如下数据(不能有2条insert语句哦!)
+请你对于表 actor 批量插入如下数据(不能有 2 条 insert 语句哦!)
 
 actor_id | first_name | last_name | last_update
 ---|:---|:---|:---

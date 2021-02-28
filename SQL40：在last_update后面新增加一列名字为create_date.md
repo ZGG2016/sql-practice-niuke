@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-存在actor表，包含如下列信息：
+存在 actor 表，包含如下列信息：
 
 ```sql
 CREATE TABLE  actor  (
@@ -12,7 +12,7 @@ CREATE TABLE  actor  (
    last_update  datetime NOT NULL);
 ```
 
-现在在last_update后面新增加一列名字为create_date, 类型为datetime, NOT NULL，默认值为'2020-10-01 00:00:00'
+现在在 last_update 后面新增加一列名字为 create_date，类型为 datetime NOT NULL，默认值为 '2020-10-01 00:00:00'
 
 ## 2、题解
 

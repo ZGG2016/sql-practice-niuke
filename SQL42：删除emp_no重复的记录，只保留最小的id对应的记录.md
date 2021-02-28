@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-删除emp_no重复的记录，只保留最小的id对应的记录。
+删除 emp_no 重复的记录，只保留最小的 id 对应的记录。
 
 ```sql
 CREATE TABLE IF NOT EXISTS titles_test (

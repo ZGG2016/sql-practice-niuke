@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-构造一个触发器audit_log，在向employees_test表中插入一条数据的时候，触发插入相关的数据到audit中。
+构造一个触发器 audit_log，在向 employees_test 表中插入一条数据的时候，触发插入相关的数据到 audit 中。
 
 ```sql
 CREATE TABLE employees_test(
@@ -31,7 +31,7 @@ END
 
 ## 3、涉及内容
 
-(1)MYSQL触发器：
+(1)MYSQL 触发器：
 
 	CREATE TRIGGER trigger_name trigger_time trigger_event ON tbl_name 
 	FOR EACH ROW
@@ -39,12 +39,12 @@ END
 	 trigger_stmt
 	END
 
-1、trigger_name标识触发器名称，用户自行指定
+1、trigger_name 标识触发器名称，用户自行指定
 
-2、trigger_time标识触发时机，可以为before或after
+2、trigger_time 标识触发时机，可以为 before 或 after
 
-3、trigger_event标识触发事件，包括INSERT、UPDATE和DELETE
+3、trigger_event 标识触发事件，包括 INSERT、UPDATE 和 DELETE
 
-4、tbl_name标识建立触发器的表名，即在哪张表上建立触发器
+4、tbl_name 标识建立触发器的表名，即在哪张表上建立触发器
 
-5、trigger_stmt是触发器内容，触发器程序可以使用begin和end作为开始和结束，中间包含多条语句
+5、trigger_stmt 是触发器内容，触发器程序可以使用 begin 和 end 作为开始和结束，中间包含多条语句

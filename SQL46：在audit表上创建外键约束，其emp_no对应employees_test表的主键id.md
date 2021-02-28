@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-在audit表上创建外键约束，其emp_no对应employees_test表的主键id。
+在 audit 表上创建外键约束，其 emp_no 对应 employees_test 表的主键 id。
 (以下2个表已经创建了)
 
 ```sql

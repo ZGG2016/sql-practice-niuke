@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-创建一个actor表，包含如下列信息
+创建一个 actor 表，包含如下列信息
 
 	  列表	           类型	       是否为NULL	含义
 	actor_id	     smallint(5)	not null	主键id
