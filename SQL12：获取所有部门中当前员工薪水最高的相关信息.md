@@ -46,6 +46,20 @@ where dr=1;
 方法2：子查询
 
 ```sql
+select t1.dept_no,t2.emp_no,t1.salary
+from 
+    (select de.dept_no,max(s.salary) salary  -- 先取出来部门里最高的薪水
+    from dept_emp de 
+    join salaries s on de.emp_no=s.emp_no
+    group by dept_no) t1
+join                                         -- 再和整张表匹配出对应的员工
+    (select de.emp_no,de.dept_no,s.salary
+    from dept_emp de 
+    join salaries s on de.emp_no=s.emp_no) t2
+on t1.dept_no=t2.dept_no and t1.salary=t2.salary
+order by t1.dept_no;
+
+-- -------------------------------------------------
 SELECT d1.dept_no, d1.emp_no, s1.salary
 FROM dept_emp as d1 
 INNER JOIN salaries as s1 ON d1.emp_no=s1.emp_no
@@ -89,6 +103,7 @@ GROUP BY d.dept_no;
 
     1.利用窗口函数
     2.子查询，先取出一个部门下的最大值，再匹配。
+    3.聚合列和groupby的关系（如上述）
 
 ## 3、涉及内容
 
