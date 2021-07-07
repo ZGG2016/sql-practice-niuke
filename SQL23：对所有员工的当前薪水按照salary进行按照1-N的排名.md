@@ -2,7 +2,7 @@
 
 ## 1、题目
 
-对所有员工的当前(to_date='9999-01-01')薪水按照salary进行按照1-N的排名【降序】，相同salary并列且按照emp_no升序排列
+对所有员工的当前(to_date='9999-01-01')薪水按照salary进行按照1-N的排名，相同salary并列且按照emp_no升序排列
 
 ```sql
 CREATE TABLE `salaries` (
@@ -16,15 +16,19 @@ PRIMARY KEY (`emp_no`,`from_date`));
 ## 2、题解
 
 
+按照salary进行1-N的排名，最高的薪水排名是1，最低的薪水排名是N，也就是降序。
+
 ```sql
 -- 使用窗口函数
-select emp_no,salary,
-dense_rank() over(order by salary desc) rank
+select emp_no, salary, 
+    dense_rank() over(order by salary desc) t_rank
 from salaries
-where to_date='9999-01-01';
+where to_date='9999-01-01'
+-- 相同salary并列且按照emp_no升序排列
+order by t_rank asc,emp_no asc;
 
 
--- 一个序列：'4'、'3'、'2''1'。 按降序排列，'2'的序号是3，此时在这个序列中大于等于当前值的数量也是3
+-- 一个序列：'4'、'3'、'2'、'1'。 按降序排列，'2'的序号是3，此时在这个序列中大于等于当前值的数量也是3
 -- 所以，当降序排列的时候，元素的序号就是大于等于当前值的数量。
 -- rank排名：查询表中大于自己薪水的员工的数量（考虑并列：去重）
 SELECT 
