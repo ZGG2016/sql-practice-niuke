@@ -14,6 +14,7 @@ PRIMARY KEY (`emp_no`,`from_date`));
 
 ## 2、题解
 
+是当前(to_date = '9999-01-01' )
 
 ```sql
 select avg(salary) avg_salary
@@ -23,8 +24,6 @@ and salary not in (
     select max(salary) from salaries where to_date = '9999-01-01'
     union 
     select min(salary) from salaries where to_date = '9999-01-01');
-
--- 如果存在多个最值情况，可以使用窗口函数 dense_rank()
 ```
 
 ## 3、涉及内容
